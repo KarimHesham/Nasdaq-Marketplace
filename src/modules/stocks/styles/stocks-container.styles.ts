@@ -21,7 +21,12 @@ export const stocksContainerStyles = StyleSheet.create({
   flatListContent: {
     justifyContent: 'center',
     alignItems: 'center',
-    flexGrow: 1, // Allow content to grow and be scrollable
+    flexGrow: 1,
     paddingBottom: 20,
+  },
+  loadingContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });

@@ -1,10 +1,11 @@
 import React from 'react';
-import {Text, FlatList, ActivityIndicator} from 'react-native';
+import {Text, FlatList, View} from 'react-native';
 import useTheme from '../../common/hooks/theme.hook';
 import useGetStockData from '../hooks/get-stock-data.hook';
 import StockCard from './stock-card';
 import {stocksContainerStyles} from '../styles/stocks-container.styles';
 import {Stock} from '../types';
+import Loading from '../../common/components/loading';
 
 const StocksList: React.FC = () => {
   const {backgroundStyle} = useTheme();
@@ -39,7 +40,11 @@ const StocksList: React.FC = () => {
   };
 
   if (isLoading) {
-    return <ActivityIndicator size="large" color="#0000ff" />;
+    return (
+      <View style={stocksContainerStyles.loadingContainer}>
+        <Loading />
+      </View>
+    );
   }
 
   if (isError) {
@@ -64,11 +69,7 @@ const StocksList: React.FC = () => {
       contentContainerStyle={stocksContainerStyles.flatListContent}
       onEndReached={loadMore}
       onEndReachedThreshold={0.5}
-      ListFooterComponent={
-        isFetchingNextPage ? (
-          <ActivityIndicator size="small" color="#0000ff" />
-        ) : null
-      }
+      ListFooterComponent={isFetchingNextPage ? <Loading /> : null}
     />
   );
 };

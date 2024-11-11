@@ -1,9 +1,9 @@
 import React, {useState} from 'react';
-import {TextInput, View} from 'react-native';
+import {Image, TextInput, View} from 'react-native';
 import {debounce} from '../utils';
 import {useStocks} from '../hooks/stocks-context.hook';
 import {searchInputStyles} from '../styles/search-input.styles';
-
+import NasdaqLogo from '../../../assets/nasdaq-logo.png';
 const SearchInput: React.FC = () => {
   const {setSearchTerm} = useStocks();
   const [inputValue, setInputValue] = useState('');
@@ -19,6 +19,11 @@ const SearchInput: React.FC = () => {
 
   return (
     <View style={searchInputStyles.container}>
+      <Image
+        source={NasdaqLogo}
+        style={searchInputStyles.logo}
+        resizeMode="contain"
+      />
       <TextInput
         style={searchInputStyles.input}
         placeholder="Search for stocks..."
